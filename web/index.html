@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>沉浸式PDF阅读系统</title>
+    <!-- Use Inter font for a clean, modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- PDF.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <!-- Phosphor icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body class="light-mode">
+    <div id="app-container">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="glass-panel">
+            <div class="sidebar-header">
+                <h2><i class="ph ph-book-open"></i> 阅读空间</h2>
+                <button id="theme-toggle" class="icon-btn" title="切换深色/浅色模式">
+                    <i class="ph ph-moon"></i>
+                </button>
+            </div>
+            <div class="sidebar-content">
+                <ul id="pdf-list">
+                    <li class="loading">加载文档列表...</li>
+                </ul>
+            </div>
+            <div class="sidebar-footer">
+                <small>基于 PDF.js 强力驱动</small>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main id="main-view">
+            <!-- Toolbar -->
+            <header id="top-toolbar" class="glass-panel">
+                <h1 id="document-title">选择左侧文档开始阅读</h1>
+                
+                <div class="toolbar-controls">
+                    <div class="zoom-controls">
+                        <button id="zoom-out" class="icon-btn" title="缩小"><i class="ph ph-magnifying-glass-minus"></i></button>
+                        <span id="zoom-level">100%</span>
+                        <button id="zoom-in" class="icon-btn" title="放大"><i class="ph ph-magnifying-glass-plus"></i></button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- PDF Viewer -->
+            <div id="pdf-viewer-container">
+                <div id="pdf-viewer-overlay" class="hidden">
+                    <div class="spinner"></div>
+                    <p>正在加载...</p>
+                </div>
+                <!-- Dynamic single canvas element for the current page -->
+                <canvas id="pdf-canvas"></canvas>
+            </div>
+
+            <!-- Bottom Toolbar: Pagination -->
+            <footer id="bottom-toolbar" class="glass-panel">
+                <button id="prev-page" class="btn" disabled><i class="ph ph-caret-left"></i> 上一页</button>
+                <div class="page-info">
+                    第 <input type="number" id="page-num" value="0" min="1" max="1" disabled> 页
+                    <span class="pages-divider">/</span>
+                    <span id="page-count">0</span>
+                </div>
+                <button id="next-page" class="btn" disabled>下一页 <i class="ph ph-caret-right"></i></button>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Initialization scripts -->
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    </script>
+    <script src="app.js"></script>
+</body>
+</html>

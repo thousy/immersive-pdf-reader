@@ -1,0 +1,26 @@
+# Ignore huge PDF, MP4, and ZIP files containing exam materials and backup archives
+*.pdf
+*.mp4
+*.zip
+*.docx
+
+# Python virtual environment
+.venv/
+__pycache__/
+*.pyc
+
+# Local debug and extracted scripts/files
+extracted_text.txt
+extract_sample_pdfs.py
+*.exe
+server.js
+
+# Unrelated app directories
+exam-app/
+内部资料电子版及纸质打印-2025/
+26年真题、模拟题、计算题、案例分析题、分章/
+26年真题、模拟题、计算题、案例分析题、分页/
+26年重点考点汇总、案例专题、论文专题、分章/
+26年重点考点汇总、案例专题、论文专题、分页/
+软考系统_纯净Excel升级版_20260331_0014/
+
